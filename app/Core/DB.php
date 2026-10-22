@@ -4,6 +4,7 @@ namespace App\Core;
 
 use PDO;
 use PDOException;
+use RuntimeException;
 
 final class DB{
 private static ?PDO $instance=null;
@@ -19,6 +20,9 @@ public static function getConnection():PDO{
             PDO::ATTR_EMULATE_PREPARES=> false,
             ]);
         }catch(PDOException $e){
+            die($e->getMessage()); //error_log($e->getMessage())
+        }
+        catch(RuntimeException $e){
             die($e->getMessage()); //error_log($e->getMessage())
         }
     }

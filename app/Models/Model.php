@@ -25,6 +25,7 @@ abstract class Model {
         $fields = implode(',', array_keys($data));
         $values=implode(',',$values);
         $sql="INSERT INTO {$this->table}({$fields}) VALUES ({$values})";
+        dd($sql);
         $stmt=$this->db->prepare($sql);
         if($stmt->execute()){
             return $data;
@@ -40,9 +41,9 @@ abstract class Model {
     }
 
     public function getId(int $id){
-        $stmt=$this->db->prepare("SELECT * FROM {$this->table} WHERE id=id");
-        $stmt->execute([':id'=id]);
-        return $stmt->fetch() ? :null;
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch() ?: null;
     }
 
     }

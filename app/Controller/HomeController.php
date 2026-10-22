@@ -1,8 +1,13 @@
 <?php
-namespace App\Controllers;
+namespace App\Controller;
+use App\Core\DB;
 
 class HomeController{
-    function __construct(){
-        echo '<h2>Home</h2>';
+    function  index(){
+        $db = DB::getConnection();
+        return view('home',['title'=>'Home']);
+    }
+    function contact(){
+        return view('contact',['title'=>'Contact']);
     }
 }

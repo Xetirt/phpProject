@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__.'/../vendor/autoload.php';
 
-use App\Core\Request;
+require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../app/bootstrap.php';
+
 use App\Core\Router;
 
-$req = new Request();
-
-$router = new Router($req);
+// Instanciar el enrutador una sola vez
+$router = new Router();

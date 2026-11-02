@@ -1,0 +1,203 @@
+/* =================================================================ate
+   Counter Component
+=================================================================== */
+.counter {
+  font-size: 1rem; /* 16px */
+  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  border-radius: 0.3125rem; /* 5px */
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  margin-bottom: 1.5rem; /* 24px */
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* =================================================================
+   Hero Section 3D Transform
+=================================================================== */
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: auto;
+  }
+
+  .base {
+    position: relative;
+    z-index: 0;
+    width: 10.625rem; /* 170px */
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+    transform: perspective(2000px) rotateZ(300deg) rotateY(39deg);
+  }
+
+  .framework {
+    z-index: 1;
+    top: 2.125rem; /* 34px */
+    height: 1.75rem; /* 28px */
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 6.6875rem; /* 107px */
+    width: auto;
+    height: 1.625rem; /* 26px */
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
+  }
+}
+
+/* =================================================================
+   Center Layout
+=================================================================== */
+#center {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1.5625rem; /* 25px */
+  place-content: center;
+  place-items: center;
+
+  @media (max-width: 1024px) {
+    gap: 1.125rem; /* 18px */
+    padding: 2rem 1.25rem 1.5rem; /* 32px 20px 24px */
+  }
+}
+
+/* =================================================================
+   Next Steps Section
+=================================================================== */
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 2rem; /* 32px */
+
+    @media (max-width: 1024px) {
+      padding: 1.5rem 1.25rem; /* 24px 20px */
+    }
+  }
+
+  .icon {
+    width: 1.375rem; /* 22px */
+    height: 1.375rem; /* 22px */
+    margin-bottom: 1rem; /* 16px */
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  display: flex;
+  gap: 0.5rem; /* 8px */
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  .logo {
+    height: 1.125rem; /* 18px */
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+    padding: 0.375rem 0.75rem; /* 6px 12px */
+    font-size: 1rem; /* 16px */
+    color: var(--text-h);
+    background: var(--social-bg);
+    border-radius: 0.375rem; /* 6px */
+    text-decoration: none;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+
+    .button-icon {
+      width: 1.125rem; /* 18px */
+      height: 1.125rem; /* 18px */
+    }
+  }
+
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.25rem; /* 20px */
+
+    li {
+      flex: 1 1 calc(50% - 0.5rem);
+    }
+
+    a {
+      box-sizing: border-box;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+/* =================================================================
+   Spacer & Ticks
+=================================================================== */
+#spacer {
+  height: 5.5rem; /* 88px */
+  border-top: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    height: 3rem; /* 48px */
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -0.28125rem; /* -4.5px */
+    border: 0.3125rem solid transparent; /* 5px */
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}

@@ -3,46 +3,55 @@ import { createContext } from "react";
 
 const NoteContext = createContext();
 
+//const API_URL = "https://ca599dc98e75c8ba71bc.free.beeceptor.com/api/notes";
+
 function NoteProviderWrapper(props){
 
-    const noteList = [
-        {
-            id: 1,
-            title: "Ir a casa del Niño toppless",
-            marked: false
-        },
-        {
-            id: 2,
-            title: "Ir a casa del Telaviv",
-            marked: false
-        },
-        {
-            id: 3,
-            title: "Ir a casa del Netanyahu",
-            marked: false
-        },
-        {
-            id: 4,
-            title: "Ir a casa del Niño Hombre",
-            marked: false
+     const [notes, setNotes] = useState([]);
+     const [hasError, setError] = useState(false);
+     const [hasLoaded, setLoaded] = useState(false);
+
+    const getNotes = async () =>{
+        try {
+            const respose = await fetch(API_URL);
+            const data = await respose.json();
+            setNotes(data.reverse());
+            setError(false);
+            setLoaded(true);
+        } catch (e) {
+            console.log(e);
+            setError(true);
         }
-    ]
+    }
 
-    const [notes, setNotes] = useState(noteList);
-
-    const updateNote = (updateNote) => {
-        const updatedNotes = notes.map((note) =>{
-            if(note.id !== updateNote) return note
-            return updateNote
-        });
-
-        setNotes(updatedNotes);
+    const addNote = async (newNote) =>{
+        try {
+            await fetch(API_URL, {
+                method:"POST",
+                body:JSON.stringify(newNote)
+            })
+            setNotes([newNote,...notes])
+        } catch (e) {
+            console.log(e)
+        }
+        
     };
 
+    const updateNote = (id) => {
+    const updatedNotes = notes.map((note) => {
+        if (note.id === id) {
+            return { ...note, marked: !note.marked }
+        }
+        return note;
+    });
+
+    setNotes(updatedNotes);
+};
+
     return(
-        <NoteContext value={{notes, setNotes, updateNote}}>
+        <NoteContext.Provider value={{notes, hasError, hasLoaded, getNotes, setNotes, addNote, updateNote}}>
             {props.children}
-        </NoteContext>
+        </NoteContext.Provider>
     )
 }
 

@@ -18,13 +18,15 @@ function NoteCard({note}) {
 
     updateNote(updateNote);
 
+    const { updateNote } = useContext(NoteContext);
+
     
   }
 
   return (
     <article className='note-card'>
       <input type="text" className='card-title' defaultValue={note.title} onChange={handleInput}/>
-      <input type="checkbox" checked={note.marked} onChange={handleCheck}/>
+      <input type="checkbox" checked={note.marked} onChange={() => updateNote(note.id)}/>
     </article>
   )
 }

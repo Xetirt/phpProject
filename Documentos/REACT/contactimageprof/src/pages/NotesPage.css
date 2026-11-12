@@ -1,0 +1,58 @@
+/* Estilos generales de la página */
+.notes-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Título de la página */
+.notes-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Contenedor de la lista con la imagen de fondo integrada correctamente */
+.note-list {
+  background-image: url("../../public/images.jpeg");
+  background-size: cover;          /* Hace que la imagen cubra todo el contenedor sin deformarse */
+  background-position: center;     /* Centra la imagen */
+  background-repeat: no-repeat;    /* Evita que la imagen se repita en mosaico */
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  
+  /* Espaciado interno (padding) para que las tarjetas no peguen contra los bordes de la imagen */
+  padding: 2rem;                  
+  margin: 0;
+  border-radius: 12px;             /* Bordes redondeados para el contenedor de la lista */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra elegante alrededor del bloque */
+}
+
+/* Estilo para cada elemento de la lista */
+.note-list li {
+  display: flex;
+}
+
+/* Asegurar que el componente NoteCard ocupe todo el alto disponible en su celda 
+   y tenga un fondo claro para que el texto resalte legiblemente sobre tu fondo de grafiti */
+.note-list li > * {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.92); /* Blanco ligeramente translúcido */
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2{
+  background-color: #1a1a1a;
+  color: white;
+}

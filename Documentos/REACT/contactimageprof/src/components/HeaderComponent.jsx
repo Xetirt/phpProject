@@ -1,86 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import "./HeaderComponent.css"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contents/user.context";
+import "./HeaderComponent.css"; // Importamos los estilos propios del menú
 
-function HeaderComponent() {
+export default function HeaderComponent() {
+  const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // Al cerrar sesión redirigimos a la página principal
+  };
+
   return (
     <header className="header">
-        <h2 className="title">Landing Page</h2>
-        <nav>
-            <ul className='nav-list'>
-                <li>
-                    <Link to='/' className='link'>
-                        Home
-                    </Link>
-                    
-                </li>
-                <li>
-                    <Link to='/notes' className='link'>
-                        Notes
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/userpage' className='link'>
-                        Registre
-                    </Link>
-                </li>
-            </ul>
-        </nav>
+      <nav className="nav-links">
+        {/* Enlaces públicos siempre visibles */}
+        <Link to="/">Inicio</Link>
+        <Link to="/albums">Álbumes</Link>
+        <Link to="/posts">Posts</Link>
+
+        {/* METODOLOGÍA: Renderizado condicional reactivo según si hay usuario autenticado */}
+        {user && (
+          <>
+            <Link to="/profile">Mi Perfil</Link>
+            <Link to="/todos">Mis Tareas</Link>
+          </>
+        )}
+      </nav>
+
+      <div className="user-info">
+        {user ? (
+          <>
+            {/* Saludamos con el atributo 'name' del usuario autenticado */}
+            <span>Hola, <strong>{user.name}</strong></span>
+            <button onClick={handleLogout}>Cerrar sesión</button>
+          </>
+        ) : (
+          <span>Modo Invitado</span>
+        )}
+      </div>
     </header>
-  )
+  );
 }
-
-export default HeaderComponent
-
-/*
-Suneo
-
-Atrevido es lo que vengo a cantar.
-
-Cuando un gorila rompe lo de los demás,
-
-una gran faena que te va a fastidiar,
-
-pero se le puede perdonar.
-
-Gigante
-
-Lo mío es mío, y lo tuyo también,
-
-y este zorro no me está tratando bien.
-
-Así que de los pelos le voy a coger,
-
-picadillo yo le voy a hacer.
-
-Suneo
-
-Te da miedo, pero si le adulas ya verás
-
-Gigante
-
-él es astuto, pero de sus cosas disfrutarás.
-
-Suneo y Gigante
-
-Pelear es nuestro sino,
-
-pero al final nos vamos a arreglar. Hmm, sí...
-
-¡Oh, oh, oh, oh, oh, oh, oh, oh, oh!
-
-¡LOS DOS!
-
-Gigante
-
-El gorila que vigila y el zorro,
-
-Suneo y Gigante
-
-¡LOS DOS!
-
-Juntos siempre le echamos mucho morro.
-
-¡Bailar!
-
-¡Los amigos del alma vamos a cantar!*/

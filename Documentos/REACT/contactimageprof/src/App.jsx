@@ -1,22 +1,24 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import HeaderComponent from './components/HeaderComponent'
-import './App.css'
-import FooterComponent from './components/FooterComponent'
-import HomePage from './pages/HomePage'
-import UserPage from './pages/UserPage'
+import { Routes, Route } from "react-router-dom";
+import HeaderComponent from "./components/HeaderComponent";
+import HomePage from "./pages/HomePage";
+import AlbumPage from "./pages/AlbumPage";
+import PostPage from "./pages/PostPage";
+import UserPage from "./pages/UserPage";
+import TodoPage from "./pages/TodoPage";
+import ErrorPage from "./pages/ErrorPage"; // Reutilizado tal cual de tu proyecto base
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
     <>
-    <Routes>
-      <Route path="/" element={<HomePage/>} />
-      <Route path="/userpage" element={<UserPage/>}/>
-    </Routes>
+      <HeaderComponent />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/albums" element={<AlbumPage />} />
+        <Route path="/posts" element={<PostPage />} />
+        <Route path="/profile" element={<UserPage />} />
+        <Route path="/todos" element={<TodoPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </>
-  )
+  );
 }
-
-export default App

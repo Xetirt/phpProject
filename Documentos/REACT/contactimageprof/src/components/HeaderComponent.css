@@ -1,37 +1,41 @@
 .header {
-    background-color: rgb(7, 20, 34);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 3rem;
-    font-family: system-ui, -apple-system, sans-serif;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Una ligera sombra abajo para separarlo del contenido */
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.title {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #38bdf8; /* El mismo azul moderno que usamos en los títulos del footer */
-    font-weight: 700;
+.nav-links {
+  display: flex;
+  gap: 1.2rem;
 }
 
-.nav-list {
-    list-style: none;
-    display: flex;
-    gap: 2rem; /* Espacio entre los enlaces */
-    margin: 0;
-    padding: 0;
+.nav-links a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.link {
-    color: #94a3b8; /* Gris suave para los enlaces */
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
+.nav-links a:hover {
+  color: white;
+  text-decoration: underline;
 }
 
-.link:hover {
-    color: white; /* Se vuelve blanco brillante al pasar el ratón */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.user-info button {
+  background-color: #ef4444;
+}
+
+.user-info button:hover {
+  background-color: #dc2626;
 }
